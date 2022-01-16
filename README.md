@@ -1,1 +1,2 @@
-# bee-contract
+# Bee Token Project
+BeeToken is the original token of the BeeGiftCard platform with the transaction symbol BGC, providing many utilities and added value to users on the platform through the staking reward and membership privilege program. Let's look around our business which makes BeeToken become more vital and potential.
