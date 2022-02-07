@@ -1,0 +1,21 @@
+{
+  "name": "bee-contract",
+  "version": "1.0.0",
+  "description": "BeeToken is the original token of the BeeGiftCard platform with the transaction symbol BGC, providing many utilities and added value to users on the platform through the staking reward and membership privilege program. Let's look around our business which makes BeeToken become more vital and potential.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "compile": "node compile",
+    "deploy": "node deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.0.0",
+    "ganache-cli": "^6.12.2",
+    "mocha": "^9.1.3",
+    "moment": "^2.29.1",
+    "solc": "^0.8.11",
+    "web3": "^1.6.1"
+  }
+}
