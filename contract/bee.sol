@@ -1605,7 +1605,7 @@ contract Bee is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable {
             Holder({
                 name: "Private sale",
                 pool: (totalTokens * 5) / 100,
-                holderAddress: 0xAefBCeF9187356029bA4409a2F84AC03e5cf7761,
+                holderAddress: 0xAb6aea85d93F546Cf1808780e9c6FAC97fbAc407,
                 vestingStartAfter: 0,
                 vestingInitPercent: 15,
                 vestingLookTime: 180 * 1 days,
@@ -1617,7 +1617,7 @@ contract Bee is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable {
             Holder({
                 name: "Strategic partners",
                 pool: (totalTokens * 10) / 100,
-                holderAddress: 0xA97D6E1B038e3eDC8953CaC5cB4E6277F33E05E9,
+                holderAddress: 0x42713B588834c028Dfbc681104d40502845Dff8C,
                 vestingStartAfter: 0 * 1 days,
                 vestingInitPercent: 0,
                 vestingLookTime: 365 * 1 days,
@@ -1629,7 +1629,7 @@ contract Bee is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable {
             Holder({
                 name: "Pre sale",
                 pool: (totalTokens * 2) / 100,
-                holderAddress: 0xcF6EEE70c8A250E88CbCDe1A5230d80F04Eb2a4e,
+                holderAddress: 0xc99b22a9bE20318f1D0834B5d1539bc42511Fffc,
                 vestingStartAfter: 90 * 1 days,
                 vestingInitPercent: 30,
                 vestingLookTime: 90 * 1 days,
@@ -1641,7 +1641,7 @@ contract Bee is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable {
             Holder({
                 name: "IDO",
                 pool: (totalTokens * 1) / 100,
-                holderAddress: 0x3A043703727085B4C8C00dCf9b9e11456856555C,
+                holderAddress: 0x9D8a13E81EB9e882b68C72281034216A3d113120,
                 vestingStartAfter: 120 * 1 days,
                 vestingInitPercent: 100,
                 vestingLookTime: 0,
@@ -1653,7 +1653,7 @@ contract Bee is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable {
             Holder({
                 name: "Marketing",
                 pool: (totalTokens * 20) / 100,
-                holderAddress: 0xc74F8D19450f2f62dacAEb61d416b76F06Ff3e60,
+                holderAddress: 0xd3f46d648B3763d480d2674Bd6944Fc9FBaA22A7,
                 vestingStartAfter: 0,
                 vestingInitPercent: 0,
                 vestingLookTime: 0,
@@ -1665,7 +1665,7 @@ contract Bee is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable {
             Holder({
                 name: "Reward & Stacking",
                 pool: (totalTokens * 20) / 100,
-                holderAddress: 0x4C13592CdCeBD5e70F43D1f44fA2d1C41fEf2A4E,
+                holderAddress: 0x807C66c778eC6A47d5F2Dc6aDd9FF2A038B5f860,
                 vestingStartAfter: 0,
                 vestingInitPercent: 0,
                 vestingLookTime: 0,
@@ -1677,7 +1677,7 @@ contract Bee is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable {
             Holder({
                 name: "Team",
                 pool: (totalTokens * 15) / 100,
-                holderAddress: 0xC7BE9777Ee57d4Aa709E52e8d0B051fC3e145911,
+                holderAddress: 0xcA0b7B9e6Bc0AEAcAB9a9425c645e789Db0D4ba8,
                 vestingStartAfter: 0,
                 vestingInitPercent: 0,
                 vestingLookTime: 365 * 1 days,
@@ -1689,7 +1689,7 @@ contract Bee is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable {
             Holder({
                 name: "Advisor",
                 pool: (totalTokens * 5) / 100,
-                holderAddress: 0x4883c6e8cA0596e078791D169862049721273903,
+                holderAddress: 0xB13e0D5613Bb024a3F517c9787E609C74A436eb3,
                 vestingStartAfter: 0,
                 vestingInitPercent: 0,
                 vestingLookTime: 365 * 1 days,
@@ -1701,7 +1701,7 @@ contract Bee is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable {
             Holder({
                 name: "Reserve fund",
                 pool: (totalTokens * 15) / 100,
-                holderAddress: 0x4eF26189186dC53d000F8161e936502f90E0da5a,
+                holderAddress: 0xEb164a509C3c5f195cED75c4195afd9e24837deB,
                 vestingStartAfter: 0,
                 vestingInitPercent: 0,
                 vestingLookTime: 0,
@@ -1713,12 +1713,12 @@ contract Bee is ERC20, ERC20Burnable, ERC20Snapshot, Ownable, Pausable {
             Holder({
                 name: "Liquidity",
                 pool: (totalTokens * 7) / 100,
-                holderAddress: 0x641588fA09A6413f5a990204e317F736Aff61db1,
+                holderAddress: 0x11a3e5eF12599F002f44888aC4D4a5e32B3FEec4,
                 vestingStartAfter: 120 days,
-                vestingInitPercent: 50,
-                vestingLookTime: 180 days,
-                vestingPeriod: 30 days,
-                vestingTime: 1
+                vestingInitPercent: 0,
+                vestingLookTime: 0,
+                vestingPeriod: 60 days,
+                vestingTime: 10
             })
         );
 

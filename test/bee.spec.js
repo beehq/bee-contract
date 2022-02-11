@@ -232,26 +232,23 @@ describe('Test BEE contract', async () => {
         assert.equal(Number(releasePeriod), (30 * ONE_DAY) / ONE_SECOND);
     })
 
-    it('Liquidity: 7%:Start release 31/05/2022, 50% will be release. 50% will be locked in next 180 days & will release by vesting plan ', async () => {
+    it('Liquidity: 7%: Start release 01/06/2022. Each month will be release 10%', async () => {
         const liquidityLockedContract = holders.find(h => h.name == 'Liquidity');
         const tokenLiquidity = totalSupply * 7 / 100;
-        const initAmount = tokenLiquidity * 50 / 100;
 
-        // Lock: Start release in next 120 days. 50% will be release , 50% will be locked in next 180 days & will release by vesting plan 
-        await Promise.all(liquidityLockedContract.timeLockedContractAddresses.map(async (t, index) => {
-            const timeLockedContract = getTimeLockContract(t.contractAddress);
-            const nextReleaseTime = await timeLockedContract.methods.nextReleaseTime().call();
-            const lockedDays = index == 0 ? 120 : 120 + 180;
-            const calcReleaseTime = new Date(startTime.getTime() + lockedDays * ONE_DAY) / ONE_SECOND;
-            assert.ok(Math.abs(calcReleaseTime - Number(nextReleaseTime)) < ONE_MINUTE);
-        }))
+        const timeLockedContract = getTimeLockContract(liquidityLockedContract.timeLockedContractAddresses[0].contractAddress);
 
-        // Vesting plan: release amount & release period
-        const timeLockedContract = getTimeLockContract(liquidityLockedContract.timeLockedContractAddresses[1].contractAddress);
+        // Lock until 01/06/2022 => 120 days
+        const nextReleaseTime = await timeLockedContract.methods.nextReleaseTime().call();
+        assert.ok(Math.abs(new Date(startTime.getTime() + 120 * ONE_DAY) / ONE_SECOND - Number(nextReleaseTime)) < ONE_MINUTE);
+
+        // Vesting plan: will be release 10% for each 60 days
         const releaseAmount = convertAmountToken(await timeLockedContract.methods.releaseAmount().call());
         const releasePeriod = await timeLockedContract.methods.releasePeriod().call();
-        assert.ok(Math.abs((tokenLiquidity - initAmount) / 1 - releaseAmount) < 1); // release after 6 months 180 days
-        assert.equal(Number(releasePeriod), (30 * ONE_DAY) / ONE_SECOND);
+
+        // amount vesting monthly
+        assert.ok(Math.abs((tokenLiquidity / 10) - releaseAmount) < 1);
+        assert.equal(Number(releasePeriod), (60 * ONE_DAY) / ONE_SECOND);
     })
 })
 
@@ -261,8 +258,8 @@ describe('Test Reward & Stacking release plan', async () => {
     console.log({ startTime });
     let timeLockedContract;
     beforeEach(async function () {
-        const teamLockedContract = holders.find(h => h.name == 'Reward & Stacking');
-        timeLockedContract = getTimeLockContract(teamLockedContract.timeLockedContractAddresses[0].contractAddress);
+        const contracts = holders.find(h => h.name == 'Reward & Stacking');
+        timeLockedContract = getTimeLockContract(contracts.timeLockedContractAddresses[0].contractAddress);
         const blockTime = Math.round(startTime.getTime() / 1000) + indexUnitTest * period / 1000 + 1;
         await advanceBlockAtTime(blockTime);
         indexUnitTest++;
@@ -310,5 +307,35 @@ describe('Test Reward & Stacking release plan', async () => {
         await advanceBlockAtTime(blockTime);
         const releasableAmount = convertAmountToken(await timeLockedContract.methods.releasableAmount().call());
         assert.equal(releasableAmount, 150000000);
+    })
+})
+
+
+describe('Test liquidity release plan', async () => {
+    let indexUnitTest = 0;
+    let period = 60 * ONE_DAY;
+    let liquidityContractStartTime = new Date(startTime.getTime() + 120 * ONE_DAY);
+    let timeLockedContract;
+    console.log({ liquidityContractStartTime });
+
+    beforeEach(async function () {
+        const contracts = holders.find(h => h.name == 'Liquidity');
+        timeLockedContract = getTimeLockContract(contracts.timeLockedContractAddresses[0].contractAddress);
+        const blockTime = Math.round(liquidityContractStartTime.getTime() / 1000) + indexUnitTest * period / 1000 + 1;
+        console.log("blockTime", new Date(blockTime * ONE_SECOND));
+        await advanceBlockAtTime(blockTime);
+        indexUnitTest++;
+    })
+
+    it('Total release 01/06/2022 => amount = 7.000.000 tokens', async () => {
+        // const calcPassedPeriods = await timeLockedContract.methods.calcPassedPeriods().call();
+        const releasableAmount = convertAmountToken(await timeLockedContract.methods.releasableAmount().call());
+        assert.equal(releasableAmount, 7000000);
+    })
+
+    it('Total release 01/08/2022 => amount = 14.000.000 tokens', async () => {
+        // const calcPassedPeriods = await timeLockedContract.methods.calcPassedPeriods().call();
+        const releasableAmount = convertAmountToken(await timeLockedContract.methods.releasableAmount().call());
+        assert.equal(releasableAmount, 14000000);
     })
 })
